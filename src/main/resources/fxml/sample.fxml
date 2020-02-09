@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<TabPane prefHeight="300.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <tabs>
+        <Tab text="Товари">
+            <content>
+                <AnchorPane>
+                    <children>
+                        <TableView onMouseClicked="#onClickTableView" fx:id="tableProduct" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="377.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columns>
+                                <TableColumn minWidth="-Infinity" prefWidth="75.0" text="ID" fx:id="idColumn" />
+                                <TableColumn prefWidth="75.0" text="Ім'я товара" fx:id="nameColumn"  />
+                                <TableColumn prefWidth="75.0" text="Тип" fx:id="typeColumn"  />
+                                <TableColumn prefWidth="75.0" text="Оптова ціна" fx:id="wholesalePriceColumn"  />
+                                <TableColumn prefWidth="75.0" text="Роздрібна ціна" fx:id="retailPriceColumn"  />
+                                <TableColumn prefWidth="75.0" text="Постачальник" fx:id="providerColumn"  />
+                                <TableColumn prefWidth="75.0" text="Кількість" fx:id="countColumn"  />
+                            </columns>
+                        </TableView>
+                        <AnchorPane maxHeight="50.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                            <children>
+                                <TextField fx:id="fieldId" layoutY="2.0" maxWidth="75.0" minHeight="30.0" prefHeight="30.0" prefWidth="149.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                <TextField fx:id="fieldName" maxHeight="30.0" maxWidth="75.0" minHeight="30.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="0.0" />
+                                <TextField fx:id="fieldType" maxWidth="75.0" minHeight="30.0" prefHeight="30.0" AnchorPane.leftAnchor="150.0" />
+                                <TextField fx:id="fieldWholesalePrice" maxHeight="30.0" maxWidth="75.0" prefHeight="30.0" AnchorPane.leftAnchor="225.0" />
+                                <TextField fx:id="fieldRetailPrice" minHeight="30.0" prefWidth="75.0" AnchorPane.leftAnchor="300.0" />
+                                <TextField fx:id="fieldProvider" maxHeight="30.0" maxWidth="75.0" minHeight="30.0" AnchorPane.leftAnchor="375.0" />
+                                <TextField fx:id="fieldCount" maxWidth="75.0" minHeight="30.0" AnchorPane.leftAnchor="450.0" />
+                                <Button onMouseClicked="#onClickApply" layoutX="525.0" layoutY="3.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" text="Додати/застосувати" AnchorPane.leftAnchor="525.0" AnchorPane.topAnchor="0.0" />
+                                <Button onMouseClicked="#onClickDelete" layoutX="651.0" layoutY="2.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" text="Видалити" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="0.0" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="Постачальники">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="343.0">
+                    <children>
+                        <TableView prefHeight="271.0" prefWidth="500.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="C1" />
+                                <TableColumn prefWidth="75.0" text="C2" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="Склади">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="C1" />
+                                <TableColumn prefWidth="75.0" text="C2" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
