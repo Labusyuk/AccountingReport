@@ -1,50 +1,49 @@
 package sample.dao;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import sample.model.Check;
 import sample.model.Product;
 import sample.utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-public class ProductDao implements EntityDao<Integer, Product> {
-
+public class CheckDao implements EntityDao<Integer, Check> {
     @Override
-    public Product findById(Integer id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Product.class, id);
+    public Check findById(Integer id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Check.class, id);
     }
 
     @Override
-    public void save(Product product) {
+    public void save(Check check) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(product);
+        session.save(check);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void update(Product product) {
+    public void update(Check check) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(product);
+        session.update(check);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void delete(Product product) {
+    public void delete(Check check) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(product);
+        session.delete(check);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public List<Product> findAll() {
-        List products = HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Product").list();;
-        return products;
+    public List<Check> findAll() {
+        List<Check> checks = (List<Check>) HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        return checks;
     }
 }

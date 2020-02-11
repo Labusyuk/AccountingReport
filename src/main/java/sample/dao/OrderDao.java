@@ -1,50 +1,48 @@
 package sample.dao;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import sample.model.Product;
+import sample.model.Order;
 import sample.utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-public class ProductDao implements EntityDao<Integer, Product> {
-
+public class OrderDao implements EntityDao<Integer, Order> {
     @Override
-    public Product findById(Integer id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Product.class, id);
+    public Order findById(Integer id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Order.class, id);
     }
 
     @Override
-    public void save(Product product) {
+    public void save(Order order) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(product);
+        session.save(order);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void update(Product product) {
+    public void update(Order order) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(product);
+        session.update(order);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void delete(Product product) {
+    public void delete(Order order) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(product);
+        session.delete(order);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public List<Product> findAll() {
-        List products = HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Product").list();;
-        return products;
+    public List<Order> findAll() {
+        List<Order> orders = (List<Order>) HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        return orders;
     }
 }

@@ -14,8 +14,8 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         Parent root = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 750, 300));
+        primaryStage.setTitle("[Telegram] Керування замовленнями");
+        primaryStage.setScene(new Scene(root, 750, 320));
         primaryStage.show();
     }
 

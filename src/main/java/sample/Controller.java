@@ -8,70 +8,63 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import sample.dao.ProductDao;
-import sample.model.Product;
+import sample.model.*;
 import javafx.scene.control.TableColumn;
-public class Controller {
+import sample.service.OrderService;
+import sample.service.ProductService;
 
-    @FXML
-    public TextField fieldId;
-    @FXML
-    public TextField fieldName;
-    @FXML
-    public TextField fieldType;
-    @FXML
-    public TextField fieldWholesalePrice;
-    @FXML
-    public TextField fieldRetailPrice;
-    @FXML
-    public TextField fieldProvider;
-    @FXML
-    public TextField fieldCount;
-    ProductDao productDao = new ProductDao();
+public class Controller {
+    /***PRODUCTS***/
+    private ProductService productService = new ProductService();
     private ObservableList<Product> productList = FXCollections.observableArrayList();
+    @FXML
+    public TextField fieldProductId;
+    @FXML
+    public TextField fieldProductName;
+    @FXML
+    public TextField fieldProductType;
+    @FXML
+    public TextField fieldProductPrice;
+    @FXML
+    public TextField fieldProductCount;
     @FXML
     private TableView<Product> tableProduct;
     @FXML
-    private TableColumn<Product, Integer> idColumn;
+    private TableColumn<Product, Integer> idProductColumn;
     @FXML
-    private TableColumn<Product, String> nameColumn;
+    private TableColumn<Product, String> nameProductColumn;
     @FXML
-    private TableColumn<Product, String> typeColumn;
+    private TableColumn<Product, String> typeProductColumn;
     @FXML
-    private TableColumn<Product, Integer> wholesalePriceColumn;
+    private TableColumn<Product, Integer> priceProductColumn;
     @FXML
-    private TableColumn<Product, Integer> retailPriceColumn;
-    @FXML
-    private TableColumn<Product, String> providerColumn;
-    @FXML
-    private TableColumn<Product, Integer> countColumn;
+    private TableColumn<Product, Integer> countProductColumn;
+
+    /***ORDER***/
+    private OrderService orderService = new OrderService();
+    private ObservableList<Order> orderList = FXCollections.observableArrayList();
+
+    private ObservableList<Check> checkList = FXCollections.observableArrayList();
+    private ObservableList<ProductCategories> productCategoriesList = FXCollections.observableArrayList();
+    private ObservableList<Table> tableList = FXCollections.observableArrayList();
+
+
 
 
     // инициализируем форму данными
     @FXML
     private void initialize() {
         initData();
-
-        // устанавливаем тип и значение которое должно хранится в колонке
-        idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
-        wholesalePriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("wholesale_price"));
-        retailPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("retail_price"));
-        providerColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("provider_id"));
-        countColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("count"));
-
-
-
-        // заполняем таблицу данными
+        idProductColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
+        nameProductColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        typeProductColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
+        priceProductColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
+        countProductColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("count"));
         tableProduct.setItems(productList);
-
     }
 
-    // подготавливаем данные для таблицы
-    // вы можете получать их с базы данных
     private void initData() {
-
-        productList.addAll(productDao.getAll());
+        productList.addAll(productService.findAll());
 
 /*
         productList.add(new Product(1, "Xiaomi A1","Телефон",500,600,0,1));
@@ -79,7 +72,6 @@ public class Controller {
         productList.add(new Product(3, "Iphone XS", "Телефон", 1000,1200,0,1));
         productList.add(new Product(4, "Nokia", "Телефон", 20,21,0,1));
         productList.add(new Product(5, "Samsung HotBench", "Мікрохвильова піч", 1000,1200,0,1));
-
         for(Product product:productList)
             productDao.create(product);
 */
@@ -87,32 +79,31 @@ public class Controller {
 
     public void onClickTableView(MouseEvent mouseEvent) {
         int index = tableProduct.getSelectionModel().getSelectedIndex();
-        fieldId.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getId()));
-        fieldName.setText(tableProduct.getSelectionModel().getTableView().getItems().get(index).getName());
-        fieldType.setText(tableProduct.getSelectionModel().getTableView().getItems().get(index).getType());
-        fieldRetailPrice.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getRetail_price()));
-        fieldWholesalePrice.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getWholesale_price()));
-        fieldProvider.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getProvider_id()));
-        fieldCount.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getCount()));
+        if(index<0)return;
+        fieldProductId.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getId()));
+        fieldProductName.setText(tableProduct.getSelectionModel().getTableView().getItems().get(index).getName());
+        fieldProductType.setText(tableProduct.getSelectionModel().getTableView().getItems().get(index).getType());
+        fieldProductPrice.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getPrice()));
+        fieldProductCount.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getCount()));
     }
 
     public void onClickApply(MouseEvent mouseEvent) {
-        Product product = new Product(Integer.valueOf(fieldId.getText()),fieldName.getText(),fieldType.getText(), Integer.valueOf(fieldWholesalePrice.getText()),Integer.valueOf(fieldRetailPrice.getText()),Integer.valueOf(fieldProvider.getText()),Integer.valueOf(fieldCount.getText()));
-        if(!fieldId.getText().isEmpty() && productDao.findByID(Integer.valueOf(fieldId.getText()))!=null){
-            productDao.updateProduct(product);
+        Product product = new Product(Integer.valueOf(fieldProductId.getText()),fieldProductName.getText(),fieldProductType.getText(), Integer.valueOf(fieldProductPrice.getText()),Integer.valueOf(fieldProductCount.getText()));
+        if(!fieldProductId.getText().isEmpty() && productService.findById(Integer.valueOf(fieldProductId.getText()))!=null){
+            productService.update(product);
         }else{
-            productDao.create(product);
+            productService.save(product);
         }
         productList.clear();
-        productList.addAll(productDao.getAll());
-
+        productList.addAll(productService.findAll());
     }
 
     public void onClickDelete(MouseEvent mouseEvent) {
-        if (!fieldId.getText().isEmpty() && productDao.findByID(Integer.valueOf(fieldId.getText())) != null) {
-            productDao.deleteById(Integer.valueOf(fieldId.getText()));
+        if (!fieldProductId.getText().isEmpty() && productService.findById(Integer.valueOf(fieldProductId.getText())) != null) {
+
+            productService.deleteById(Integer.valueOf(fieldProductId.getText()));
         }
         productList.clear();
-        productList.addAll(productDao.getAll());
+        productList.addAll(productService.findAll());
     }
 }

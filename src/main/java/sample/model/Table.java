@@ -10,14 +10,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-public class Product {
+public class Table {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //generated DataBase auto_increment when insert value
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
     private int id;
-    private String name;
-    private String type;
+    private String hall;
+    private String nameNum;
     private int price;
-    private int count;
-
 }
