@@ -9,13 +9,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
-public class Check {
+@Entity(name = "`table`")
+public class Table {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //generated DataBase auto_increment when insert value
-    @Column(name = "order_id", nullable = false, insertable = true, updatable = true)
-    private int order_id;
-    private String name;
-    private int count;
+    @Column(name = "id", nullable = false, insertable = true, updatable = true)
+    private int id;
+    private String hall;
+    private String nameNum;
     private int price;
 }
