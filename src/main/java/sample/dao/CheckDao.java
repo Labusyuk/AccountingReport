@@ -2,48 +2,47 @@ package sample.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import sample.model.Check;
-import sample.model.Product;
+import sample.model.Checks;
 import sample.utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-public class CheckDao implements EntityDao<Integer, Check> {
+public class CheckDao implements EntityDao<Integer, Checks> {
     @Override
-    public Check findById(Integer id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Check.class, id);
+    public Checks findById(Integer id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Checks.class, id);
     }
 
     @Override
-    public void save(Check check) {
+    public void save(Checks checks) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(check);
+        session.save(checks);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void update(Check check) {
+    public void update(Checks checks) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(check);
+        session.update(checks);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void delete(Check check) {
+    public void delete(Checks checks) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(check);
+        session.delete(checks);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public List<Check> findAll() {
-        List<Check> checks = (List<Check>) HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    public List<Checks> findAll() {
+        List<Checks> checks = (List<Checks>) HibernateSessionFactoryUtil.getSessionFactory().openSession();
         return checks;
     }
 }

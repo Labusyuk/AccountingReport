@@ -1,43 +1,41 @@
 package sample.service;
 
-import sample.dao.ProductDao;
 import sample.dao.TableDao;
-import sample.model.Product;
-import sample.model.Table;
+import sample.model.Tables;
 
 import java.util.List;
 
-public class TableService implements EntityService<Integer, Table> {
+public class TableService implements EntityService<Integer, Tables> {
     private TableDao tableDao = new TableDao();
     @Override
-    public Table findById(Integer id) {
+    public Tables findById(Integer id) {
         return tableDao.findById(id);
     }
 
     @Override
-    public void save(Table product) {
+    public void save(Tables product) {
         tableDao.save(product);
     }
 
     @Override
-    public void update(Table product) {
+    public void update(Tables product) {
         tableDao.update(product);
     }
 
     @Override
-    public void delete(Table product) {
+    public void delete(Tables product) {
         tableDao.delete(product);
     }
 
     @Override
     public void deleteById(Integer id) {
-        Table table = new Table();
-        table.setId(id);
-        tableDao.delete(table);
+        Tables tables = new Tables();
+        tables.setId(id);
+        tableDao.delete(tables);
     }
 
     @Override
-    public List<Table> findAll() {
+    public List<Tables> findAll() {
         return tableDao.findAll();
     }
 }

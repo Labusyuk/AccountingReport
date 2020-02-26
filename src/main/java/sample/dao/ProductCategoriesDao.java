@@ -2,7 +2,6 @@ package sample.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import sample.model.Order;
 import sample.model.ProductCategories;
 import sample.utils.HibernateSessionFactoryUtil;
 

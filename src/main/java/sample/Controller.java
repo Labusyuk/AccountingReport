@@ -3,15 +3,19 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import sample.dao.ProductDao;
 import sample.model.*;
 import javafx.scene.control.TableColumn;
+import sample.service.CheckService;
 import sample.service.OrderService;
 import sample.service.ProductService;
+
+import java.time.LocalTime;
+import java.util.Date;
 
 public class Controller {
     /***PRODUCTS***/
@@ -42,11 +46,60 @@ public class Controller {
 
     /***ORDER***/
     private OrderService orderService = new OrderService();
-    private ObservableList<Order> orderList = FXCollections.observableArrayList();
+    private ObservableList<Orders> ordersList = FXCollections.observableArrayList();
+    @FXML
+    public TextField fieldIdOrder;
+    @FXML
+    public ChoiceBox<String> fieldDateOrder;
+    @FXML
+    public ChoiceBox<String> fieldTimeOrder;
+    @FXML
+    public ChoiceBox<String> fieldHallOrder;
+    @FXML
+    public ChoiceBox<String> fieldTableOrder;
+    @FXML
+    public TextField fieldCustomerOrder;
+    @FXML
+    public TextField fieldTelephoneOrder;
+    @FXML
+    private TableView<Orders> tableOrder;
+    @FXML
+    private TableColumn<Orders, Integer> idOrderColumn;
+    @FXML
+    private TableColumn<Orders, Date> dateOrderColumn;
+    @FXML
+    private TableColumn<Orders, LocalTime> timeOrderColumn;
+    @FXML
+    private TableColumn<Orders, Tables> hallOrderColumn;
+    @FXML
+    private TableColumn<Orders, Tables> tableOrderColumn;
+    @FXML
+    private TableColumn<Orders, String> customerOrderColumn;
+    @FXML
+    private TableColumn<Orders, String> telephoneOrderColumn;
 
-    private ObservableList<Check> checkList = FXCollections.observableArrayList();
+    /***CHECK***/
+    private ObservableList<Checks> checksList = FXCollections.observableArrayList();
+    private CheckService checkService = new CheckService();
+    @FXML
+    public ChoiceBox fieldNameCheck;
+    @FXML
+    public TextField fieldCountCheck;
+    @FXML
+    public TextField fieldPriceCheck;
+    @FXML
+    private TableView<Checks> tableCheck;
+    @FXML
+    private TableColumn<Checks, String> nameOrderColumn;
+    @FXML
+    private TableColumn<Checks, Integer> countOrderColumn;
+    @FXML
+    private TableColumn<Checks, Integer> priceOrderColumn;
+
+
+
     private ObservableList<ProductCategories> productCategoriesList = FXCollections.observableArrayList();
-    private ObservableList<Table> tableList = FXCollections.observableArrayList();
+    private ObservableList<Tables> tablesList = FXCollections.observableArrayList();
 
 
 
@@ -61,23 +114,26 @@ public class Controller {
         priceProductColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
         countProductColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("count"));
         tableProduct.setItems(productList);
+
+        idOrderColumn.setCellValueFactory(new PropertyValueFactory<Orders, Integer>("id"));
+        dateOrderColumn.setCellValueFactory(new PropertyValueFactory<Orders, Date>("date"));
+        timeOrderColumn.setCellValueFactory(new PropertyValueFactory<Orders, LocalTime>("localTime"));
+        hallOrderColumn.setCellValueFactory(new PropertyValueFactory<Orders, Tables>("table"));
+        tableOrderColumn.setCellValueFactory(new PropertyValueFactory<Orders, Tables>("table"));
+        customerOrderColumn.setCellValueFactory(new PropertyValueFactory<Orders, String>("сustomer"));
+        telephoneOrderColumn.setCellValueFactory(new PropertyValueFactory<Orders, String>("telephone"));
+        tableOrder.setItems(ordersList);
+
     }
 
     private void initData() {
         productList.addAll(productService.findAll());
-
-/*
-        productList.add(new Product(1, "Xiaomi A1","Телефон",500,600,0,1));
-        productList.add(new Product(2, "Samsung Galaxy S5","Телефон",800,100,0,1));
-        productList.add(new Product(3, "Iphone XS", "Телефон", 1000,1200,0,1));
-        productList.add(new Product(4, "Nokia", "Телефон", 20,21,0,1));
-        productList.add(new Product(5, "Samsung HotBench", "Мікрохвильова піч", 1000,1200,0,1));
-        for(Product product:productList)
-            productDao.create(product);
-*/
+        ordersList.addAll(orderService.findAll());
     }
 
-    public void onClickTableView(MouseEvent mouseEvent) {
+
+
+    public void onClickProductTableView(MouseEvent mouseEvent) {
         int index = tableProduct.getSelectionModel().getSelectedIndex();
         if(index<0)return;
         fieldProductId.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getId()));
@@ -87,7 +143,7 @@ public class Controller {
         fieldProductCount.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getCount()));
     }
 
-    public void onClickApply(MouseEvent mouseEvent) {
+    public void onClickProductApply(MouseEvent mouseEvent) {
         Product product = new Product(Integer.valueOf(fieldProductId.getText()),fieldProductName.getText(),fieldProductType.getText(), Integer.valueOf(fieldProductPrice.getText()),Integer.valueOf(fieldProductCount.getText()));
         if(!fieldProductId.getText().isEmpty() && productService.findById(Integer.valueOf(fieldProductId.getText()))!=null){
             productService.update(product);
@@ -98,7 +154,7 @@ public class Controller {
         productList.addAll(productService.findAll());
     }
 
-    public void onClickDelete(MouseEvent mouseEvent) {
+    public void onClickProductDelete(MouseEvent mouseEvent) {
         if (!fieldProductId.getText().isEmpty() && productService.findById(Integer.valueOf(fieldProductId.getText())) != null) {
 
             productService.deleteById(Integer.valueOf(fieldProductId.getText()));
@@ -106,4 +162,26 @@ public class Controller {
         productList.clear();
         productList.addAll(productService.findAll());
     }
+
+/*    public void onClickOrderApply(MouseEvent mouseEvent) {
+        Order order = new Order(Integer.valueOf(fieldProductId.getText()),fieldProductName.getText(),fieldProductType.getText(), Integer.valueOf(fieldProductPrice.getText()),Integer.valueOf(fieldProductCount.getText()));
+        if(!fieldProductId.getText().isEmpty() && productService.findById(Integer.valueOf(fieldProductId.getText()))!=null){
+            productService.update(product);
+        }else{
+            productService.save(product);
+        }
+        productList.clear();
+        productList.addAll(productService.findAll());
+    }
+
+    public void onClickOrderDelete(MouseEvent mouseEvent) {
+        if (!fieldProductId.getText().isEmpty() && productService.findById(Integer.valueOf(fieldProductId.getText())) != null) {
+
+            productService.deleteById(Integer.valueOf(fieldProductId.getText()));
+        }
+        productList.clear();
+        productList.addAll(productService.findAll());
+    }*/
+
+
 }

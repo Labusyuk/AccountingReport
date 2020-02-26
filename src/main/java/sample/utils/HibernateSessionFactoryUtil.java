@@ -16,10 +16,10 @@ public class HibernateSessionFactoryUtil {
             try {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(Product.class);
-                configuration.addAnnotatedClass(Check.class);
-                configuration.addAnnotatedClass(Order.class);
+                configuration.addAnnotatedClass(Checks.class);
+                configuration.addAnnotatedClass(Orders.class);
                 configuration.addAnnotatedClass(ProductCategories.class);
-                configuration.addAnnotatedClass(Table.class);
+                configuration.addAnnotatedClass(Tables.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
 

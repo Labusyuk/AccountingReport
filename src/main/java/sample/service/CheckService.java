@@ -1,43 +1,41 @@
 package sample.service;
 
 import sample.dao.CheckDao;
-import sample.dao.ProductDao;
-import sample.model.Check;
-import sample.model.Product;
+import sample.model.Checks;
 
 import java.util.List;
 
-public class CheckService implements EntityService<Integer, Check> {
+public class CheckService implements EntityService<Integer, Checks> {
     private CheckDao checkDao = new CheckDao();
     @Override
-    public Check findById(Integer id) {
+    public Checks findById(Integer id) {
         return checkDao.findById(id);
     }
 
     @Override
-    public void save(Check check) {
-        checkDao.save(check);
+    public void save(Checks checks) {
+        checkDao.save(checks);
     }
 
     @Override
-    public void update(Check check) {
-        checkDao.update(check);
+    public void update(Checks checks) {
+        checkDao.update(checks);
     }
 
     @Override
-    public void delete(Check check) {
-        checkDao.delete(check);
+    public void delete(Checks checks) {
+        checkDao.delete(checks);
     }
 
     @Override
     public void deleteById(Integer id) {
-        Check check = new Check();
-        check.setOrder_id(id);
-        checkDao.delete(check);
+        Checks checks = new Checks();
+        checks.setId(id);
+        checkDao.delete(checks);
     }
 
     @Override
-    public List<Check> findAll() {
+    public List<Checks> findAll() {
         return checkDao.findAll();
     }
 }

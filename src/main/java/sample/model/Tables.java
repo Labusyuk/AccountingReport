@@ -9,8 +9,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "`table`")
-public class Table {
+@Entity
+public class Tables {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //generated DataBase auto_increment when insert value
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
