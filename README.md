@@ -3,7 +3,7 @@ Java FX. The module of the cash register of the customer service system of publi
 At first time, project was released with jdbc sql statement. Now using Hibernate.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Labusyuk/TransportationSheduleSpring/master/other/transportionshedule2.png">
+  <img src="https://raw.githubusercontent.com/Labusyuk/AccountingReport/master/other/diagram.png">
 </p>
 
 ##### Instructions to run the project:
@@ -21,13 +21,13 @@ Monitor, add, update, and delete a reservation. Managing Available Products. Man
 ##### The look of the interface program
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Labusyuk/TransportationSheduleSpring/master/other/transportionshedule2.png">
+  <img src="https://raw.githubusercontent.com/Labusyuk/AccountingReport/master/other/screenshot.png">
 </p>
 
 ##### Image ER-diagram database of the project;
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Labusyuk/TransportationSheduleSpring/master/other/transportionshedule2.png">
+  <img src="https://raw.githubusercontent.com/Labusyuk/AccountingReport/master/other/ER-Diagram.png">
 </p>
 
 
