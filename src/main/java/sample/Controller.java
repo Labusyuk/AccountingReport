@@ -10,9 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import sample.model.*;
 import javafx.scene.control.TableColumn;
-import sample.service.CheckService;
-import sample.service.OrderService;
-import sample.service.ProductService;
+import sample.service.*;
 
 import java.time.LocalTime;
 import java.util.Date;
@@ -26,7 +24,7 @@ public class Controller {
     @FXML
     public TextField fieldProductName;
     @FXML
-    public TextField fieldProductType;
+    public ChoiceBox<ProductCategories> fieldProductType;
     @FXML
     public TextField fieldProductPrice;
     @FXML
@@ -48,19 +46,19 @@ public class Controller {
     private OrderService orderService = new OrderService();
     private ObservableList<Orders> ordersList = FXCollections.observableArrayList();
     @FXML
-    public TextField fieldIdOrder;
+    public TextField fieldOrderId;
     @FXML
-    public ChoiceBox<String> fieldDateOrder;
+    public ChoiceBox<String> fieldOrderDate;
     @FXML
-    public ChoiceBox<String> fieldTimeOrder;
+    public ChoiceBox<String> fieldOrderTime;
     @FXML
-    public ChoiceBox<String> fieldHallOrder;
+    public ChoiceBox<String> fieldOrderHall;
     @FXML
-    public ChoiceBox<String> fieldTableOrder;
+    public ChoiceBox<String> fieldOrderTable;
     @FXML
-    public TextField fieldCustomerOrder;
+    public TextField fieldOrderCustomer;
     @FXML
-    public TextField fieldTelephoneOrder;
+    public TextField fieldOrderTelephone;
     @FXML
     private TableView<Orders> tableOrder;
     @FXML
@@ -82,11 +80,11 @@ public class Controller {
     private ObservableList<Checks> checksList = FXCollections.observableArrayList();
     private CheckService checkService = new CheckService();
     @FXML
-    public ChoiceBox fieldNameCheck;
+    public ChoiceBox fieldCheckName;
     @FXML
-    public TextField fieldCountCheck;
+    public TextField fieldCheckCount;
     @FXML
-    public TextField fieldPriceCheck;
+    public TextField fieldCheckPrice;
     @FXML
     private TableView<Checks> tableCheck;
     @FXML
@@ -96,10 +94,41 @@ public class Controller {
     @FXML
     private TableColumn<Checks, Integer> priceOrderColumn;
 
-
-
+    /***ProductCategories***/
+    private ProductCategoriesService productCategoriesService = new ProductCategoriesService();
     private ObservableList<ProductCategories> productCategoriesList = FXCollections.observableArrayList();
-    private ObservableList<Tables> tablesList = FXCollections.observableArrayList();
+    @FXML
+    public TextField fieldProductCategoriesId;
+    @FXML
+    public TextField fieldProductCategoriesName;
+    @FXML
+    private TableView<ProductCategories> tableProductCategories;
+    @FXML
+    private TableColumn<ProductCategories, Integer> idProductCategoriesColumn;
+    @FXML
+    private TableColumn<ProductCategories, String> nameProductCategoriesColumn;
+
+    /***Tables***/
+    private TableService tableService = new TableService();
+    private ObservableList<ProductCategories> tableList = FXCollections.observableArrayList();
+    @FXML
+    public TextField fieldTablesId;
+    @FXML
+    public TextField fieldTablesName;
+    @FXML
+    public TextField fieldTablesNumTables;
+    @FXML
+    public TextField fieldTablesPrice;
+    @FXML
+    private TableView<Tables> tableTables;
+    @FXML
+    private TableColumn<Tables, Integer> idTablesColumn;
+    @FXML
+    private TableColumn<Tables, String> hallTablesColumn;
+    @FXML
+    private TableColumn<Tables, Integer> nameNumTablesColumn;
+    @FXML
+    private TableColumn<Tables, String> priceTablesColumn;
 
 
 
@@ -138,20 +167,20 @@ public class Controller {
         if(index<0)return;
         fieldProductId.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getId()));
         fieldProductName.setText(tableProduct.getSelectionModel().getTableView().getItems().get(index).getName());
-        fieldProductType.setText(tableProduct.getSelectionModel().getTableView().getItems().get(index).getType());
+        ///fieldProductType.setText(tableProduct.getSelectionModel().getTableView().getItems().get(index).getType());
         fieldProductPrice.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getPrice()));
         fieldProductCount.setText(Integer.toString(tableProduct.getSelectionModel().getTableView().getItems().get(index).getCount()));
     }
 
     public void onClickProductApply(MouseEvent mouseEvent) {
-        Product product = new Product(Integer.valueOf(fieldProductId.getText()),fieldProductName.getText(),fieldProductType.getText(), Integer.valueOf(fieldProductPrice.getText()),Integer.valueOf(fieldProductCount.getText()));
+        /*Product product = new Product(Integer.valueOf(fieldProductId.getText()),fieldProductName.getText(),fieldProductType.getText(), Integer.valueOf(fieldProductPrice.getText()),Integer.valueOf(fieldProductCount.getText()));
         if(!fieldProductId.getText().isEmpty() && productService.findById(Integer.valueOf(fieldProductId.getText()))!=null){
             productService.update(product);
         }else{
             productService.save(product);
         }
         productList.clear();
-        productList.addAll(productService.findAll());
+        productList.addAll(productService.findAll());*/
     }
 
     public void onClickProductDelete(MouseEvent mouseEvent) {

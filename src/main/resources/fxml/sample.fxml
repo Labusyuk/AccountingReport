@@ -25,15 +25,15 @@
                   <TableView fx:id="tableOrder" layoutX="9.0" layoutY="36.0" prefHeight="181.0" prefWidth="472.0">
                     <columns>
                         <TableColumn fx:id="idOrderColumn" prefWidth="36.0" text="ID" />
-                        <TableColumn fx:id="dateOrderColumn" prefWidth="69.0" text="День" />
+                        <TableColumn fx:id="customerOrderColumn" prefWidth="69.0" text="Замовник" />
                       <TableColumn fx:id="timeOrderColumn" prefWidth="52.0" text="Час" />
                       <TableColumn fx:id="hallOrderColumn" prefWidth="79.0" text="Зал" />
                         <TableColumn fx:id="tableOrderColumn" prefWidth="81.0" text="Стіл" />
-                        <TableColumn fx:id="customerOrderColumn" prefWidth="72.0" text="Замовник" />
+                        <TableColumn fx:id="dateOrderColumn" prefWidth="72.0" text="День" />
                         <TableColumn fx:id="telephoneOrderColumn" prefWidth="82.0" text="Номер тел." />
                     </columns>
                   </TableView>
-                  <TableView layoutX="493.0" layoutY="36.0" prefHeight="181.0" prefWidth="248.0">
+                  <TableView fx:id="tableCheck" layoutX="493.0" layoutY="36.0" prefHeight="181.0" prefWidth="248.0">
                      <columns>
                         <TableColumn fx:id="nameOrderColumn" prefWidth="112.0" text="Назва" />
                         <TableColumn fx:id="countOrderColumn" prefWidth="70.0" text="К-сть" />
@@ -45,20 +45,20 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fieldIdOrder" layoutX="9.0" layoutY="217.0" maxWidth="75.0" minHeight="30.0" prefHeight="30.0" prefWidth="32.0" />
-                  <TextField fx:id="fieldCustomerOrder" layoutX="322.0" layoutY="217.0" maxWidth="82.0" minHeight="30.0" prefHeight="30.0" prefWidth="70.0" />
-                  <TextField fx:id="fieldTelephoneOrder" layoutX="392.0" layoutY="217.0" maxWidth="90.0" minHeight="30.0" prefHeight="30.0" prefWidth="90.0" />
-                  <Button fx:id="id8" layoutX="244.0" layoutY="247.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" text="Додати/застосувати" />
-                  <Button fx:id="id9" layoutX="393.0" layoutY="247.0" minHeight="30.0" minWidth="88.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="89.0" text="Видалити" />
-                  <ChoiceBox fx:id="fieldNameCheck" layoutX="494.0" layoutY="216.0" prefHeight="31.0" prefWidth="105.0" />
-                  <TextField fx:id="fieldCountCheck" layoutX="600.0" layoutY="217.0" maxWidth="90.0" minHeight="30.0" prefHeight="30.0" prefWidth="74.0" />
-                  <TextField fx:id="fieldPriceCheck" layoutX="675.0" layoutY="217.0" maxWidth="90.0" minHeight="30.0" prefHeight="30.0" prefWidth="65.0" />
-                  <Button fx:id="id13" layoutX="494.0" layoutY="247.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="157.0" text="Додати/застосувати" />
-                  <Button fx:id="id14" layoutX="652.0" layoutY="247.0" minHeight="30.0" minWidth="88.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="89.0" text="Видалити" />
-                  <ChoiceBox fx:id="fieldDateOrder" layoutX="41.0" layoutY="217.0" prefHeight="30.0" prefWidth="71.0" />
-                  <ChoiceBox fx:id="fieldTimeOrder" layoutX="112.0" layoutY="217.0" prefHeight="30.0" prefWidth="50.0" />
-                  <ChoiceBox fx:id="fieldHallOrder" layoutX="162.0" layoutY="217.0" prefHeight="30.0" prefWidth="83.0" />
-                  <ChoiceBox fx:id="fieldTableOrder" layoutX="244.0" layoutY="217.0" prefHeight="30.0" prefWidth="78.0" />
+                  <TextField fx:id="fieldOrderId" layoutX="9.0" layoutY="217.0" maxWidth="75.0" minHeight="30.0" prefHeight="30.0" prefWidth="32.0" />
+                  <ChoiceBox fx:id="fieldOrderDate" layoutX="322.0" layoutY="217.0" maxWidth="82.0" minHeight="30.0" prefHeight="30.0" prefWidth="70.0" />
+                  <TextField fx:id="fieldOrderTelephone" layoutX="392.0" layoutY="217.0" maxWidth="90.0" minHeight="30.0" prefHeight="30.0" prefWidth="90.0" />
+                  <Button fx:id="buttonApplyOrder" layoutX="244.0" layoutY="247.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" text="Додати/застосувати" />
+                  <Button fx:id="buttonRemoveOrder" layoutX="393.0" layoutY="247.0" minHeight="30.0" minWidth="88.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="89.0" text="Видалити" />
+                  <ChoiceBox fx:id="fieldCheckName" layoutX="494.0" layoutY="216.0" prefHeight="31.0" prefWidth="105.0" />
+                  <TextField fx:id="fieldCheckCount" layoutX="600.0" layoutY="217.0" maxWidth="90.0" minHeight="30.0" prefHeight="30.0" prefWidth="74.0" />
+                  <TextField fx:id="fieldCheckPrice" layoutX="675.0" layoutY="217.0" maxWidth="90.0" minHeight="30.0" prefHeight="30.0" prefWidth="65.0" />
+                  <Button fx:id="buttonApplyCheck" layoutX="494.0" layoutY="247.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="157.0" text="Додати/застосувати" />
+                  <Button fx:id="buttonRemoveCheck" layoutX="652.0" layoutY="247.0" minHeight="30.0" minWidth="88.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="89.0" text="Видалити" />
+                  <TextField fx:id="fieldOrderCustomer" layoutX="41.0" layoutY="217.0" prefHeight="30.0" prefWidth="71.0" />
+                  <ChoiceBox fx:id="fieldOrderTime" layoutX="112.0" layoutY="217.0" prefHeight="30.0" prefWidth="50.0" />
+                  <ChoiceBox fx:id="fieldOrderHall" layoutX="162.0" layoutY="217.0" prefHeight="30.0" prefWidth="83.0" />
+                  <ChoiceBox fx:id="fieldOrderTable" layoutX="244.0" layoutY="217.0" prefHeight="30.0" prefWidth="78.0" />
                </children>
             </AnchorPane>
         </content>
@@ -76,15 +76,15 @@
                                 <TableColumn fx:id="countProductColumn" prefWidth="104.0" text="Кількість" />
                             </columns>
                         </TableView>
-                        <AnchorPane maxHeight="50.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <AnchorPane layoutY="251.0" maxHeight="50.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                             <children>
                                 <TextField fx:id="fieldProductId" layoutY="2.0" maxWidth="75.0" minHeight="30.0" prefHeight="30.0" prefWidth="149.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                 <TextField fx:id="fieldProductName" maxHeight="30.0" maxWidth="75.0" minHeight="30.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="0.0" />
-                                <TextField fx:id="fieldProductType" maxWidth="75.0" minHeight="30.0" prefHeight="30.0" AnchorPane.leftAnchor="150.0" />
                                 <TextField fx:id="fieldProductPrice" layoutX="225.0" minHeight="30.0" prefHeight="30.0" prefWidth="107.0" AnchorPane.leftAnchor="225.0" />
                                 <TextField fx:id="fieldProductCount" layoutX="332.0" maxWidth="110.0" minHeight="30.0" prefHeight="30.0" prefWidth="101.0" AnchorPane.leftAnchor="332.0" />
-                                <Button layoutX="433.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#onClickProductApply" text="Додати/застосувати" AnchorPane.leftAnchor="433.0" AnchorPane.topAnchor="0.0" />
-                                <Button layoutX="558.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#onClickProductDelete" text="Видалити" AnchorPane.leftAnchor="558.0" AnchorPane.topAnchor="0.0" />
+                                <Button fx:id="buttonProductApply" layoutX="433.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#onClickProductApply" text="Додати/застосувати" AnchorPane.leftAnchor="433.0" AnchorPane.topAnchor="0.0" />
+                                <Button fx:id="buttonProductRemove" layoutX="558.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#onClickProductDelete" text="Видалити" AnchorPane.leftAnchor="558.0" AnchorPane.topAnchor="0.0" />
+                        <ChoiceBox fx:id="fieldProductType" layoutX="150.0" prefHeight="30.0" prefWidth="75.0" />
                             </children>
                         </AnchorPane>
                     </children>
@@ -95,12 +95,20 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="343.0">
                     <children>
-                        <TableView prefHeight="271.0" prefWidth="500.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tableProductCategories" prefHeight="271.0" prefWidth="500.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn prefWidth="75.0" text="ID" />
-                                <TableColumn prefWidth="117.0" text="Назва категорії" />
+                                <TableColumn fx:id="idProductCategoriesColumn" prefWidth="75.0" text="ID" />
+                                <TableColumn fx:id="nameProductCategoriesColumn" prefWidth="117.0" text="Назва категорії" />
                             </columns>
                         </TableView>
+                  <AnchorPane layoutY="241.0" maxHeight="50.0" prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="fieldProductCategoriesId" layoutY="-1.0" maxWidth="75.0" minHeight="30.0" prefHeight="30.0" prefWidth="73.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-1.0" />
+                        <TextField fx:id="fieldProductCategoriesName" layoutX="73.0" layoutY="-1.0" maxHeight="30.0" maxWidth="118.0" minHeight="30.0" prefHeight="30.0" prefWidth="118.0" AnchorPane.leftAnchor="73.0" AnchorPane.topAnchor="-1.0" />
+                        <Button fx:id="buttonApplyProductCategories" layoutX="191.0" layoutY="-1.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#onClickProductApply" text="Додати/застосувати" AnchorPane.leftAnchor="191.0" AnchorPane.topAnchor="-1.0" />
+                        <Button fx:id="buttonRemoveProductCategories" layoutX="317.0" layoutY="-1.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#onClickProductDelete" text="Видалити" AnchorPane.leftAnchor="317.0" AnchorPane.topAnchor="-1.0" />
+                     </children>
+                  </AnchorPane>
                     </children>
                 </AnchorPane>
             </content>
@@ -109,14 +117,24 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="343.0">
                <children>
-                  <TableView prefHeight="271.0" prefWidth="500.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableTables" prefHeight="271.0" prefWidth="500.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="ID" />
-                        <TableColumn prefWidth="75.0" text="Назва залу" />
-                        <TableColumn prefWidth="149.0" text="Назва столу (номер)" />
-                        <TableColumn prefWidth="149.0" text="Ціна бронювання" />
+                        <TableColumn fx:id="idTablesColumn" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="hallTablesColumn" prefWidth="75.0" text="Назва залу" />
+                        <TableColumn fx:id="nameNumTablesColumn" prefWidth="149.0" text="Назва столу (номер)" />
+                        <TableColumn fx:id="priceTablesColumn" prefWidth="133.0" text="Ціна бронювання" />
                      </columns>
                   </TableView>
+                  <AnchorPane layoutY="241.0" maxHeight="50.0" prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="fieldTablesId" layoutY="2.0" maxWidth="75.0" minHeight="30.0" prefHeight="30.0" prefWidth="149.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextField fx:id="fieldTablesName" maxHeight="30.0" maxWidth="75.0" minHeight="30.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="0.0" />
+                        <TextField fx:id="fieldTablesNumTables" maxWidth="140.0" minHeight="30.0" prefHeight="30.0" prefWidth="140.0" AnchorPane.leftAnchor="150.0" />
+                        <TextField fx:id="fieldTablesPrice" layoutX="290.0" minHeight="30.0" prefHeight="30.0" prefWidth="143.0" AnchorPane.leftAnchor="290.0" />
+                        <Button fx:id="buttonApplyTables" layoutX="433.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#onClickProductApply" text="Додати/застосувати" AnchorPane.leftAnchor="433.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="buttonRemoveTables" layoutX="558.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#onClickProductDelete" text="Видалити" AnchorPane.leftAnchor="558.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </content>
